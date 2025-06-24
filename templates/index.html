@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PageSpeed Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        input[type="submit"] {
+            padding: 12px 24px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🚀 PageSpeed Checker</h2>
+        <form method="post">
+            <label for="url">Enter Website URL:</label>
+            <input type="text" name="url" id="url" placeholder="https://example.com" required>
+            <input type="submit" value="Check Speed">
+        </form>
+
+        {% if result %}
+            {% if result.error %}
+                <p class="error">{{ result.error }}</p>
+            {% else %}
+                <div class="result">
+                    <h3>Results for: {{ result.url }}</h3>
+                    <p><strong>Performance Score:</strong> {{ result.performance }}%</p>
+                    <p><strong>First Contentful Paint:</strong> {{ result.first_contentful_paint }}</p>
+                    <p><strong>Speed Index:</strong> {{ result.speed_index }}</p>
+                    <p><strong>Time to Interactive:</strong> {{ result.interactive }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
